@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <sstream>
 #include <SFML/Network.hpp>
@@ -95,8 +96,9 @@ MainMenu:
 
 		//proses scanning port
 		int tempCountPort = 0;
-		for (int i = startPort - 1; i <= endPort - 1; i++)
+		for (int i = startPort; i <= endPort; i++)
 		{
+			
 			system("cls");
 			headPort();
 			cout << "			Tunggu Bentar		" << endl;
