@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <sstream>
 #include <SFML/Network.hpp>
@@ -33,23 +32,50 @@ string ConvertIntToString(int i, int id)
 	return streamString;
 }
 
+void headPort()
+{
+	cout << "-------------------------------" << endl;
+	cout << "----------PORT SCANNER---------" << endl;
+	cout << "-------------------------------" << endl;
+	cout << endl;
+}
+
+void headAddress()
+{
+	cout << "-------------------------------" << endl;
+	cout << "-----------IP SCANNER----------" << endl;
+	cout << "-------------------------------" << endl;
+	cout << endl;
+}
 
 int main()
 {
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 MainMenu:
 	char mainMenu;
 
-	cout << "1.Port Scanner" << endl;
-	cout << "2.IP Scanner" << endl;
-	cout << "3.Keluar Program" << endl;
+	SetConsoleTextAttribute(h, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout << "==================================" << endl;
+	cout << "--------___________________-------" << endl;
+	cout << "-------| Port & IP Scanner |------" << endl;
+	cout << "----------------------------------" << endl;
+	cout << "==================================" << endl;
+	cout << "\n";
+
+	SetConsoleTextAttribute(h, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+	cout << ">>> Pilih Menu<<<" << endl;
+	cout << "1. Port Scanner" << endl;
+	cout << "2. IP Scanner" << endl;
+	cout << "3. Keluar Program" << endl;
+	SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_INTENSITY);
 	cout << "\nPilih : "; cin >> mainMenu;
 
 	system("cls");
 
 	switch (mainMenu)
 	{
-		//Port Scan
+	//Port Scan
 	case '1':
 	{
 	ScanPort:
@@ -60,10 +86,7 @@ MainMenu:
 		int countPort = 0;
 		int openPort[65535];
 
-		cout << "-------------------------------" << endl;
-		cout << "----------PORT SCANNER---------" << endl;
-		cout << "-------------------------------" << endl;
-		cout << endl;
+		headPort();
 
 		cout << "Masukkan IP Address/DNS : "; cin >> ipAddress;
 		cout << "Masukkan range port awal : "; cin >> startPort;
@@ -75,6 +98,8 @@ MainMenu:
 		for (int i = startPort - 1; i <= endPort - 1; i++)
 		{
 			system("cls");
+			headPort();
+			cout << "			Tunggu Bentar		" << endl;
 			cout << "Program sedang melakukan Scanning..........\n\n";
 			cout << tempCountPort << " Port terscan";
 
@@ -91,8 +116,11 @@ MainMenu:
 
 
 		system("cls");
+		headPort();
+
 		cout << "-------------------------------" << endl;
-		cout << "Proses Scanning Selesai\n" << endl;
+		cout << "	Proses Scanning Selesai\n" << endl;
+		cout << "-------------------------------" << endl;
 
 		//tampilkan PROT yang terbuka
 		for (int i = 0; i < countPort; i++)
@@ -144,10 +172,7 @@ MainMenu:
 		int lenghtAddress[255];
 		int backMenu;
 
-		cout << "-------------------------------" << endl;
-		cout << "-----------IP SCANNER----------" << endl;
-		cout << "-------------------------------" << endl;
-		cout << endl;
+		headAddress();
 
 		cout << "Masukkan IP address : "; cin >> ipAddress;
 		cout << "Masukkan Batas subnet terakhir : "; cin >> endSubnet;
@@ -176,6 +201,8 @@ MainMenu:
 		for (int i = startSubnet; i <= endSubnet; i++)
 		{
 			system("cls");
+			headAddress();
+
 			cout << "Program sedang melakukan Scanning..........\n\n";
 			cout << tempCountAdd << " Address terscan";
 
@@ -189,7 +216,7 @@ MainMenu:
 
 
 			//Trying Connect to IP and PORT
-			//Port SSH 
+			//Port SSH
 			if (checking(ipRan, 22))
 			{
 				char bit[17];
@@ -229,6 +256,8 @@ MainMenu:
 			tempCountAdd += 1;
 		}
 		system("cls");
+		headAddress();
+
 		cout << "-------------------------------" << endl;
 		cout << "Proses Scanning Selesai\n" << endl;
 
@@ -251,6 +280,8 @@ MainMenu:
 
 		//return ke menu
 		cout << "-------------------------------" << endl;
+		cout << "\n";
+
 		cout << "1. Untuk kembali melakukan scanning" << endl;
 		cout << "2. Untuk kembali ke menu awal" << endl;
 		cout << "\nPilih : "; cin >> backMenu;
