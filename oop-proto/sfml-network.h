@@ -1,4 +1,3 @@
-#pragma once
 #include <SFML/Network.hpp>
 
 using namespace std;
